@@ -70,8 +70,8 @@ SUPABASE_URL=test_...
 
 ## Required Accounts & APIs
 
-[supabase.com](https://supabase.com/)
-[mistral.ai](https://mistral.ai/)
-[aistudio.google.com](https://aistudio.google.com/)
+[supabase.com](https://supabase.com/)  
+[mistral.ai](https://mistral.ai/)  
+[aistudio.google.com](https://aistudio.google.com/)  
 [v0.app](https://v0.app/)
 
