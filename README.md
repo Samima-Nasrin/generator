@@ -1,8 +1,8 @@
 # RAG
 
-# Environment
+## Environment
 
-## Commands
+### Commands
 ```bash
 mkdir "directory"
 cd "directory"
@@ -11,18 +11,18 @@ venv\Scripts\activate     # on Windows
 source venv/bin/activate  # on macOS/Linux
 ```
 
-# Repository
+## Repository
 
-## Commands
+### Commands
 ```bash
 git clone https://github.com/Samima-Nasrin/generator.git
 cd generator
 
 ```
 
-# Backend (cd backend)
+## Backend (cd backend)
 
-## Commands 
+### Commands 
 ```bash
 pip install -r requirements.txt
 uvicorn main:app --reload
@@ -31,15 +31,15 @@ uvicorn main:app --reload
 http://127.0.0.1:8000
 ```
 
-## Environmental Variables (backend/.env)
+### Environmental Variables (backend/.env)
 ```
 GEMINI_API_KEY=AI_test_...
 MISTRAL_API_KEY=Df_test_...
 ```
 
-# Frontend (cd frontend)
+## Frontend (cd frontend)
 
-## Commands 
+### Commands 
 ```bash
 npm install
 npm run dev
@@ -48,7 +48,7 @@ npm run dev
 http://localhost:3000
 ```
 
-## Environmental Variables (frontend/.env.local)
+### Environmental Variables (frontend/.env.local)
 ```
 NEXT_PUBLIC_BACKEND_URL=test_...
 MISTRAL_API_KEY=test_...
