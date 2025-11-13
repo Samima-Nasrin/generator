@@ -1,6 +1,6 @@
 # RAG
 
-## Environment
+## 1. Environment
 
 ### Commands
 ```bash
@@ -11,7 +11,7 @@ venv\Scripts\activate     # on Windows
 source venv/bin/activate  # on macOS/Linux
 ```
 
-## Repository
+## 2. Repository
 
 ### Commands
 ```bash
@@ -20,16 +20,7 @@ cd generator
 
 ```
 
-## Backend (cd backend)
-
-### Commands 
-```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-```
-http://127.0.0.1:8000
-```
+## 3. Backend (cd backend)
 
 ### Environmental Variables (backend/.env)
 ```
@@ -37,16 +28,17 @@ GEMINI_API_KEY=AI_test_...
 MISTRAL_API_KEY=Df_test_...
 ```
 
-## Frontend (cd frontend)
-
 ### Commands 
 ```bash
-npm install
-npm run dev
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
+Backend running on
 ```
-http://localhost:3000
+http://127.0.0.1:8000
 ```
+
+## 4. Frontend (cd frontend)
 
 ### Environmental Variables (frontend/.env.local)
 ```
@@ -68,7 +60,17 @@ SUPABASE_SERVICE_ROLE_KEY=test_...
 SUPABASE_URL=test_...
 ```
 
-## Required Accounts & APIs
+### Commands 
+```bash
+npm install
+npm run dev
+```
+Next.js 16.0.0 (Turbopack) - Local: (Main browser app)
+```
+http://localhost:3000
+```
+
+## 5. Required Accounts & APIs
 
 [supabase.com](https://supabase.com/)  
 [mistral.ai](https://mistral.ai/)  
