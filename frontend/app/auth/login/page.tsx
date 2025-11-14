@@ -8,9 +8,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'next/navigation'
 import { useState } from "react"
-import { Brain } from "lucide-react"
+import { Brain, LogIn } from 'lucide-react'
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -52,7 +52,7 @@ export default function LoginPage() {
         <Card className="border-border/50">
           <CardHeader>
             <CardTitle className="text-2xl">Welcome back</CardTitle>
-            <CardDescription>Enter your credentials to access your account</CardDescription>
+            <CardDescription>Sign in to your account to continue</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin}>
@@ -80,7 +80,7 @@ export default function LoginPage() {
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Logging in..." : "Login"}
+                  {isLoading ? "Logging in..." : "Login with Email"}
                 </Button>
               </div>
               <div className="mt-6 text-center text-sm">

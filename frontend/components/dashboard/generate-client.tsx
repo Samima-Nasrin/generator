@@ -3,13 +3,13 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Brain, Upload, ArrowLeft, Loader2 } from "lucide-react"
+import { Brain, Upload, ArrowLeft, Loader2 } from 'lucide-react'
 import Link from "next/link"
 import { generateQuestions } from "@/lib/api-client"
 import { createClient } from "@/lib/supabase/client"
@@ -177,7 +177,7 @@ export default function GenerateClient({ user }: GenerateClientProps) {
       console.log("[v0] ✅ Successfully saved to database with ID:", insertedSet.id)
 
       console.log("[v0] Saving to localStorage...")
-      saveTestToLocalStorage({
+      saveTestToLocalStorage(user.id, {
         pdfFile: file,
         pdfData: pdfBase64,
         questions: questionSet.questions,

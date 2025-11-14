@@ -3,31 +3,32 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Brain, ArrowLeft, FileText, Volume2, VolumeX } from "lucide-react"
+import { Brain, ArrowLeft, FileText, Volume2, VolumeX } from 'lucide-react'
 import Link from "next/link"
 import { getTestById } from "@/lib/local-storage"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'next/navigation'
 import { useTextToSpeech } from "@/hooks/use-text-to-speech"
 
 interface LocalTestViewerClientProps {
   testId: string
+  userId: string
 }
 
-export default function LocalTestViewerClient({ testId }: LocalTestViewerClientProps) {
+export default function LocalTestViewerClient({ testId, userId }: LocalTestViewerClientProps) {
   const router = useRouter()
   const [test, setTest] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const { isSpeaking, currentQuestionId, speak, stop, isSupported } = useTextToSpeech()
 
   useEffect(() => {
-    const testData = getTestById(testId)
+    const testData = getTestById(userId, testId)
     if (!testData) {
       router.push("/dashboard/history")
       return
     }
     setTest(testData)
     setLoading(false)
-  }, [testId, router])
+  }, [testId, userId, router])
 
   const speakQuestion = (question: any, index: number) => {
     let textToSpeak = `Question ${index + 1}. ${question.text}`

@@ -2,16 +2,17 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Brain, ArrowLeft, FileText, Calendar, Plus } from "lucide-react"
+import { Brain, ArrowLeft, FileText, Calendar, Plus } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 import LocalHistoryClient from "./local-history-client"
 
 interface HistoryClientProps {
   questionSets: any[]
+  userId: string
 }
 
-export default function HistoryClient({ questionSets }: HistoryClientProps) {
+export default function HistoryClient({ questionSets, userId }: HistoryClientProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -103,7 +104,7 @@ export default function HistoryClient({ questionSets }: HistoryClientProps) {
           </TabsContent>
 
           <TabsContent value="local">
-            <LocalHistoryClient />
+            <LocalHistoryClient userId={userId} />
           </TabsContent>
         </Tabs>
       </div>

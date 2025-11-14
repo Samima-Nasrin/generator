@@ -1,7 +1,7 @@
 interface TestHistoryItem {
   id: string
   pdfName: string
-  pdfData: string // Base64 encoded PDF
+  pdfData: string
   questions: any[]
   timestamp: string
   subject: string
@@ -10,17 +10,22 @@ interface TestHistoryItem {
   totalMarks: number
 }
 
-const STORAGE_KEY = "testHistory"
+function getStorageKey(userId: string): string {
+  return `testHistory_${userId}`
+}
 
-export function saveTestToLocalStorage(data: {
-  pdfFile: File
-  pdfData: string
-  questions: any[]
-  subject: string
-  difficulty: string
-  totalQuestions: number
-  totalMarks: number
-}): void {
+export function saveTestToLocalStorage(
+  userId: string,
+  data: {
+    pdfFile: File
+    pdfData: string
+    questions: any[]
+    subject: string
+    difficulty: string
+    totalQuestions: number
+    totalMarks: number
+  }
+): void {
   try {
     const historyItem: TestHistoryItem = {
       id: `test_${Date.now()}`,
@@ -34,19 +39,21 @@ export function saveTestToLocalStorage(data: {
       totalMarks: data.totalMarks,
     }
 
-    const existingHistory = getTestHistory()
+    const storageKey = getStorageKey(userId)
+    const existingHistory = getTestHistory(userId)
     const updatedHistory = [historyItem, ...existingHistory]
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory))
+    localStorage.setItem(storageKey, JSON.stringify(updatedHistory))
     console.log("[v0] ✅ Saved test to localStorage:", historyItem.id)
   } catch (error) {
     console.error("[v0] ❌ Error saving to localStorage:", error)
   }
 }
 
-export function getTestHistory(): TestHistoryItem[] {
+export function getTestHistory(userId: string): TestHistoryItem[] {
   try {
-    const data = localStorage.getItem(STORAGE_KEY)
+    const storageKey = getStorageKey(userId)
+    const data = localStorage.getItem(storageKey)
     return data ? JSON.parse(data) : []
   } catch (error) {
     console.error("[v0] ❌ Error reading from localStorage:", error)
@@ -54,9 +61,9 @@ export function getTestHistory(): TestHistoryItem[] {
   }
 }
 
-export function getTestById(id: string): TestHistoryItem | null {
+export function getTestById(userId: string, id: string): TestHistoryItem | null {
   try {
-    const history = getTestHistory()
+    const history = getTestHistory(userId)
     return history.find((item) => item.id === id) || null
   } catch (error) {
     console.error("[v0] ❌ Error getting test from localStorage:", error)
@@ -64,11 +71,12 @@ export function getTestById(id: string): TestHistoryItem | null {
   }
 }
 
-export function deleteTestFromHistory(id: string): void {
+export function deleteTestFromHistory(userId: string, id: string): void {
   try {
-    const history = getTestHistory()
+    const storageKey = getStorageKey(userId)
+    const history = getTestHistory(userId)
     const updatedHistory = history.filter((item) => item.id !== id)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory))
+    localStorage.setItem(storageKey, JSON.stringify(updatedHistory))
     console.log("[v0] ✅ Deleted test from localStorage:", id)
   } catch (error) {
     console.error("[v0] ❌ Error deleting from localStorage:", error)

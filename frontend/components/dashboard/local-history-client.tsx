@@ -3,29 +3,32 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { FileText, Calendar, Trash2, Eye } from "lucide-react"
+import { FileText, Calendar, Trash2, Eye } from 'lucide-react'
 import { getTestHistory, deleteTestFromHistory } from "@/lib/local-storage"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'next/navigation'
 
-export default function LocalHistoryClient() {
+interface LocalHistoryClientProps {
+  userId: string
+}
+
+export default function LocalHistoryClient({ userId }: LocalHistoryClientProps) {
   const router = useRouter()
   const [localTests, setLocalTests] = useState<any[]>([])
 
   useEffect(() => {
-    // Load tests from localStorage
-    const tests = getTestHistory()
+    const tests = getTestHistory(userId)
     setLocalTests(tests)
-  }, [])
+  }, [userId])
 
   const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this test?")) {
-      deleteTestFromHistory(id)
-      setLocalTests(getTestHistory())
+      deleteTestFromHistory(userId, id)
+      setLocalTests(getTestHistory(userId))
     }
   }
 
   const handleView = (id: string) => {
-    router.push(`/dashboard/local-test/${id}`)
+    router.push(`/dashboard/local-test/${id}?userId=${userId}`)
   }
 
   if (localTests.length === 0) {

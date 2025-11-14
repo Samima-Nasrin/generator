@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation"
+import { redirect } from 'next/navigation'
 import { createClient } from "@/lib/supabase/server"
 import HistoryClient from "@/components/dashboard/history-client"
 
@@ -17,5 +17,5 @@ export default async function HistoryPage() {
     .eq("user_id", data.user.id)
     .order("created_at", { ascending: false })
 
-  return <HistoryClient questionSets={questionSets || []} />
+  return <HistoryClient questionSets={questionSets || []} userId={data.user.id} />
 }

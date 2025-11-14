@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Brain, FileText, Plus, LogOut, Award, TrendingUp, Clock } from "lucide-react"
+import { Brain, FileText, Plus, LogOut, Award, TrendingUp, Clock } from 'lucide-react'
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/client"
 
